@@ -1,10 +1,9 @@
-package pageObjects;
+package com.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import basePage.BasePage;
 
-import utilities.SeleniumUtilities;
+import com.qa.utils.SeleniumUtilities;
 
 public class HomePage extends BasePage{
 	WebDriver driver;

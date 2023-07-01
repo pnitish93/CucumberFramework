@@ -1,4 +1,4 @@
-package Constants;
+package com.qa.utils;
 
 public class Constants {
 	public static final String PROJECT_PATH = System.getProperty("user.dir");

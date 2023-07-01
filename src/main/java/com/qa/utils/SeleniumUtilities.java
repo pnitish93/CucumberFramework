@@ -1,4 +1,4 @@
-package utilities;
+package com.qa.utils;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumUtilities {
@@ -94,6 +95,7 @@ public class SeleniumUtilities {
 	public boolean checkIfElementsDisplayed(WebElement ... ele) {
 		boolean result = true;
 		for(WebElement e:ele) {
+			System.out.println(e.isDisplayed());
 			result = result && e.isDisplayed();
 		}
 		return result;
@@ -161,6 +163,19 @@ public class SeleniumUtilities {
 	
 	public String returnTheCurrentUrl() {
 		return driver.getCurrentUrl();
+	}
+	
+	public void selectRandomValueFromDropdown(WebElement dropdown, int indexToExclude) {
+		Select selectElement = new Select(dropdown);
+		List<WebElement> elements = selectElement.getOptions();
+		int numberOfOptions = elements.size();
+		if(indexToExclude >= 0) {
+			if(indexToExclude > (numberOfOptions-1)) {
+				System.out.println("Index chosen falls beyond the total number of options available.");
+			}
+			else {
+			}
+		}
 	}
 	
 }

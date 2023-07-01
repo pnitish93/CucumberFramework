@@ -1,12 +1,11 @@
-package basePage;
+package com.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.SeleniumUtilities;
-import pageObjects.ResultPage;
-import pageObjects.HomePage;
+
+import com.qa.utils.SeleniumUtilities;
 
 public class BasePage {
 
@@ -18,6 +17,9 @@ public class BasePage {
 
 	@FindBy(id = "nav-search-submit-button")
 	protected WebElement searchButton;
+	
+	@FindBy(xpath = "//select[@title='Search in']")
+	protected WebElement searchCategory;
 
 	public BasePage(WebDriver driver) {
 		this.driver = driver;
@@ -25,7 +27,7 @@ public class BasePage {
 		utils = new SeleniumUtilities(driver);
 	}
 	
-	public boolean areSearchBarAndButtonDisplayed() {
+	public boolean areSearchElementsDisplayed() {
 		return utils.checkIfElementsDisplayed(searchBox, searchButton);
 	}
 	
@@ -43,6 +45,10 @@ public class BasePage {
 	
 	public void clickOnSearchButton() {
 		utils.clickOnWebElement(searchButton);
+	}
+	
+	public void selectCategoryForSearch() {
+		
 	}
 
 }
