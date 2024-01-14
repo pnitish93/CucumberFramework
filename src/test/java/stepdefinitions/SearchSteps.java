@@ -3,14 +3,11 @@ package stepdefinitions;
 
 import org.openqa.selenium.WebDriver;
 
-import com.pages.BasePage;
+import com.pages.HeaderSection;
 import com.pages.HomePage;
 import com.pages.ResultPage;
 import com.qa.factory.WebdriverFactory;
-import com.qa.utils.Constants;
 import com.qa.utils.SeleniumUtilities;
-
-import java.util.concurrent.TimeUnit;
 
 import org.junit.*;
 
@@ -19,7 +16,7 @@ import io.cucumber.java.en.*;
 public class SearchSteps{
 	String searchString;
 	WebDriver driver = WebdriverFactory.getInstance().getDriver();
-	BasePage base = new BasePage(driver);
+	HeaderSection header = new HeaderSection(driver);
 	ResultPage results = new ResultPage(driver);
 	SeleniumUtilities utils = new SeleniumUtilities(driver);
 	
@@ -32,7 +29,7 @@ public class SearchSteps{
 	@When("I can see the search bar")
 	public void i_can_see_the_search_bar() {
 	    // Write code here that turns the phrase above into concrete actions
-	    if(base.areSearchElementsDisplayed()) {
+	    if(header.areSearchElementsDisplayed()) {
 	    	System.out.println("Search Element is displayed");
 	    }
 	    else {
@@ -44,7 +41,7 @@ public class SearchSteps{
 	public void type_in_the_search_bar_and_click_on_the_search_icon_in_the_search_bar(String searchItem) {
 	    // Write code here that turns the phrase above into concrete actions
 		searchString = searchItem;
-		results = base.searchFor(searchItem);
+		results = header.enterTextAndSearchFor(searchItem);
 	}
 
 	@Then("I should see a set of results according to my search")
@@ -75,5 +72,53 @@ public class SearchSteps{
 	public void the_user_should_be_redirected_to_the_home_page() {
 	    // Write code here that turns the phrase above into concrete actions
 		Assert.assertEquals("https://www.amazon.in/", utils.returnTheCurrentUrl());
+	}
+
+	@And("I can quit the browser")
+	public void i_Can_Quit_The_Browser() {
+		driver.quit();
+	}
+
+//	@And("The user sees the search bar and the dropdown for categories")
+//	public void the_User_Sees_The_Search_Bar_And_The_Dropdown_For_Categories() {
+//		Assert.assertTrue(header.checkSearchCategoryDisplayed());
+//	}
+
+	@When("The user selects dropdown for {string} from the category")
+	public void the_User_Selects_Dropdown_For_From_The_Category(String categoryType) {
+		header.selectValueFromSearchCategory(categoryType);
+	}
+
+	@And("clicks on search button")
+	public void clicks_On_Search_Button() {
+		header.clickOnSearchButton();
+	}
+
+	@Then("The user should see results specific to the {string} category")
+	public void the_User_Should_See_Results_Specific_To_The_Category(String categoryType) {
+		//--//span[contains(text(),'Alexa Skills') and contains(@class, 'bold')]
+		//Exceptions - Amazon Fashion, Apps & Games, Audible Audiobooks, Garden & Outdoors (this element is present for garden - //span[contains(text(),'Garden') and contains(@class, 'bold')])
+		//Exception - Garden & Outdoors (this element is present for garden - //span[contains(text(),'Garden') and contains(@class, 'bold')])
+		//All the search dropdown options checked
+		if (categoryType.equalsIgnoreCase("Garden & Outdoors")) {
+			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[contains(text(),'Garden') and contains(@class, 'bold')]"));
+		}
+		else if (categoryType.equalsIgnoreCase("Amazon Fashion")) {
+			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//img[@alt='Amazon Fashion']"));
+		}
+		else if (categoryType.equalsIgnoreCase("Apps & Games")) {
+			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[text()='Apps for Android']"));
+		}
+		else if (categoryType.equalsIgnoreCase("Audible Audiobooks")) {
+			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[contains(text(), 'Most Popular Audiobooks')]"));
+		}
+		else {
+			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[contains(text(), '"+categoryType+"')]"));
+		}
+	}
+
+	@And("The category dropdown should be clickable")
+	public void The_category_dropdown_should_be_clickable() {
+		header.checkIfSearchCategoryIsClickable();
 	}
 }

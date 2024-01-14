@@ -1,16 +1,19 @@
 package com.qa.utils;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumUtilities {
 	WebDriver driver;
+	WebDriverWait wait;
 	JavascriptExecutor js;
 	
 	public SeleniumUtilities(WebDriver driver) {
@@ -94,13 +97,25 @@ public class SeleniumUtilities {
 	
 	public boolean checkIfElementsDisplayed(WebElement ... ele) {
 		boolean result = true;
+//		try {
+//			Thread.sleep(3000);
+//		}
+//		catch(Exception e){
+//			System.out.println(e.getMessage());
+//		}
 		for(WebElement e:ele) {
-			System.out.println(e.isDisplayed());
+			System.out.println(e.getAttribute("title"));
+			System.out.println("Result of element dislayed is "+e.isDisplayed());
 			result = result && e.isDisplayed();
 		}
 		return result;
 	}
-	
+
+	public void waitForElementVisibilityFor(int timeToWaitInSeconds, WebElement elementToWaitFor) {
+		wait= new WebDriverWait(driver, timeToWaitInSeconds);
+		wait.until(ExpectedConditions.visibilityOf(elementToWaitFor));
+	}
+
 	public void typeInItems(WebElement typingField, String textToType) {
 		typingField.clear();
 		typingField.sendKeys(textToType);
@@ -177,5 +192,54 @@ public class SeleniumUtilities {
 			}
 		}
 	}
+
+	public void selectValueFromDropdownByVisibleText(WebElement dropdown, String visibleText) {
+		try {
+			Thread.sleep(4000);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		Select dropdownElement = new Select(dropdown);
+		dropdownElement.selectByVisibleText(visibleText);
+	}
+
+	public boolean checkIfAtLeastOneElementAvailable(String locatorType, String locatorValue) {
+		List<WebElement> elements;
+		By byLocator;
+		if (locatorType.equalsIgnoreCase("xpath")){
+			byLocator = By.xpath(locatorValue);
+		}
+		else if (locatorType.equalsIgnoreCase("id")){
+			byLocator = By.id(locatorValue);
+		}
+		else if (locatorType.equalsIgnoreCase("name")){
+			byLocator = By.name(locatorValue);
+		}
+		else if (locatorType.equalsIgnoreCase("cssSelector")){
+			byLocator = By.cssSelector(locatorValue);
+		}
+		else if (locatorType.equalsIgnoreCase("LinkText")){
+			byLocator = By.linkText(locatorValue);
+		}
+		else if (locatorType.equalsIgnoreCase("PartialLinkText")){
+			byLocator = By.partialLinkText(locatorValue);
+		}
+		else if (locatorType.equalsIgnoreCase("className")){
+			byLocator = By.className(locatorValue);
+		}
+		else {
+			byLocator = By.tagName(locatorValue);
+		}
+		elements = driver.findElements(byLocator);
+		return !elements.isEmpty();
+	}
+
+	public void checkIfElementIsClickable(WebElement element) {
+		wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+
 	
 }

@@ -26,7 +26,8 @@ public class WebdriverFactory {
 		String driverKey = "";*/
 		browser = browser.toLowerCase();
 		if(browser.equals("chrome")) {
-			driver = WebDriverManager.chromedriver().create();
+			System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
+			driver = new ChromeDriver();
 			threadedDriver.set(driver);
 		}
 		else if(browser.equals("firefox")) {

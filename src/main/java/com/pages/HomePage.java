@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.qa.utils.SeleniumUtilities;
 
-public class HomePage extends BasePage{
+public class HomePage extends HeaderSection {
 	WebDriver driver;
 	SeleniumUtilities utils;
 	

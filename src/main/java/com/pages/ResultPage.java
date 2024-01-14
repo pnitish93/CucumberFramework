@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.qa.utils.SeleniumUtilities;
 
-public class ResultPage extends BasePage {
+public class ResultPage extends HeaderSection {
 	private WebDriver driver;
 	private SeleniumUtilities utils;
 

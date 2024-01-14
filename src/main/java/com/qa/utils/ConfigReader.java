@@ -12,7 +12,7 @@ public class ConfigReader {
 	public Properties initProperties() {
 		prop = new Properties();
 		try {
-			FileInputStream fileStream = new FileInputStream("F:\\Selenium\\Selenium projects second\\BDDFramework\\src\\test\\resources\\config\\config.properties");
+			FileInputStream fileStream = new FileInputStream("src/test/resources/config/config.properties");
 			prop.load(fileStream);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
