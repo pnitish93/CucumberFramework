@@ -2,13 +2,15 @@ package com.qa.factory;
 
 import java.util.concurrent.TimeUnit;
 
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.qa.utils.Constants;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebdriverFactory {
 	private static final WebdriverFactory instance = new WebdriverFactory();
@@ -30,12 +32,14 @@ public class WebdriverFactory {
 			driver = new ChromeDriver();
 			threadedDriver.set(driver);
 		}
-		else if(browser.equals("firefox")) {
-			driver = WebDriverManager.firefoxdriver().create();
-			threadedDriver.set(driver);
-		}
+//		else if(browser.equals("firefox")) {
+//			System.setProperty("webdriver.gecko.driver", "Drivers/geckodriver.exe");
+//			driver = new FirefoxDriver();
+//			threadedDriver.set(driver);
+//		}
 		else if(browser.equals("edge")) {
-			driver = WebDriverManager.edgedriver().create();
+			System.setProperty("webdriver.edge.driver", "Drivers/msedgedriver.exe");
+			driver = new EdgeDriver();
 			threadedDriver.set(driver);
 		}
 		else {
@@ -43,8 +47,8 @@ public class WebdriverFactory {
 		}
 		/*driverPath = Constants.PROJECT_PATH+"//Drivers//"+driverValue+((os_name.equals("win"))?".exe":"");
 		System.setProperty(driverKey, driverPath);*/
-		getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		getDriver().manage().window().maximize();
+//		getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+//		getDriver().manage().window().maximize();
 	}
 	public WebDriver getDriver() {
 		/*WebDriver driver;

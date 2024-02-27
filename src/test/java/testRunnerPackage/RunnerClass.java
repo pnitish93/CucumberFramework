@@ -11,7 +11,7 @@ import io.cucumber.junit.Cucumber;
 @CucumberOptions(
 		features = {"src/test/resources/com/features/"},
 		glue = {"stepdefinitions", "appHooks"},
-		//tags = "@SearchAndScroll or @HomeFromSearchPage",
+		//tags = "@CategorySpecificSearch",
 		monochrome = true,
 		dryRun = false,
 		plugin = {"pretty", "html:test-output/report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})

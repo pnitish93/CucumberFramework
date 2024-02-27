@@ -1,6 +1,7 @@
 package appHooks;
 
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -29,6 +30,8 @@ public class ApplicationHooks {
 		factory = WebdriverFactory.getInstance();
 		factory.setDriver(prop.getProperty("browser"));
 		driver = factory.getDriver();
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 	}
 	
 	@After(order = 1)
