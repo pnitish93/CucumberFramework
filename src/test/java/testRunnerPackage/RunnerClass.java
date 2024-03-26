@@ -14,7 +14,7 @@ import io.cucumber.junit.Cucumber;
 		//tags = "@CategorySpecificSearch",
 		monochrome = true,
 		dryRun = false,
-		plugin = {"pretty", "html:test-output/report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+		plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 public class RunnerClass {
 	private static void main(String[] args) {
 		System.out.println("Runner class is being executed");

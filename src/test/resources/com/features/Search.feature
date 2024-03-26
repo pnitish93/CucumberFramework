@@ -48,3 +48,4 @@ Scenario Outline: User sees the result according to the category selected from t
 	|Amazon Fresh |
 	|Garden & Outdoors|
 	|Amazon Fashion   |
+	|Audible Audiobooks|

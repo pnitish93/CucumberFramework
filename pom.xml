@@ -38,8 +38,11 @@
 			<version>7.3.4</version> </dependency -->
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 		<!-- https://mvnrepository.com/artifact/com.github.ralfstuckert.pdfbox-layout/pdfbox2-layout -->
-		<!-- dependency> <groupId>com.github.ralfstuckert.pdfbox-layout</groupId> 
-			<artifactId>pdfbox2-layout</artifactId> <version>1.0.1</version></dependency> -->
+<!--		<dependency>-->
+<!--			<groupId>com.github.ralfstuckert.pdfbox-layout</groupId>-->
+<!--			<artifactId>pdfbox2-layout</artifactId>-->
+<!--			<version>1.0.1</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
