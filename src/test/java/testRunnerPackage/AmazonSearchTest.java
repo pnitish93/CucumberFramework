@@ -15,7 +15,7 @@ import io.cucumber.junit.Cucumber;
 		monochrome = true,
 		dryRun = false,
 		plugin = {"pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
-public class RunnerClass {
+public class AmazonSearchTest {
 	private static void main(String[] args) {
 		System.out.println("Runner class is being executed");
 	}

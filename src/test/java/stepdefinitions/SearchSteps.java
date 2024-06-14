@@ -1,6 +1,8 @@
 package stepdefinitions;
 
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.openqa.selenium.WebDriver;
 
 import com.pages.HeaderSection;
@@ -19,6 +21,8 @@ public class SearchSteps{
 	HeaderSection header = new HeaderSection(driver);
 	ResultPage results = new ResultPage(driver);
 	SeleniumUtilities utils = new SeleniumUtilities(driver);
+	ExtentReports searchReports = new ExtentReports();
+	ExtentSparkReporter sparkSearch = new ExtentSparkReporter("../../../../test-output/SparkReport/SearchRelatedReport");
 	
 	@Given("I launch {string} in the preferred browser")
 	public void i_launch_in_the_preferred_browser(String url) {

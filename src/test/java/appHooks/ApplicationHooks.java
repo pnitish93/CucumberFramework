@@ -38,7 +38,6 @@ public class ApplicationHooks {
 	public void tearDown(Scenario sc) {
 		if(sc.isFailed()) {
 			String screenshotName = sc.getName().replace(" ", "_");
-			screenshotName = screenshotName + "123";
 			byte[] screenshotByteStream = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 			sc.attach(screenshotByteStream, "image/png", screenshotName);
 		}
