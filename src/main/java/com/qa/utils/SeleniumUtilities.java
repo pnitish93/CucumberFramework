@@ -1,10 +1,12 @@
 package com.qa.utils;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+//import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -112,7 +114,7 @@ public class SeleniumUtilities {
 	}
 
 	public void waitForElementVisibilityFor(int timeToWaitInSeconds, WebElement elementToWaitFor) {
-		wait= new WebDriverWait(driver, timeToWaitInSeconds);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(timeToWaitInSeconds));
 		wait.until(ExpectedConditions.visibilityOf(elementToWaitFor));
 	}
 
@@ -236,8 +238,8 @@ public class SeleniumUtilities {
 	}
 
 	public void checkIfElementIsClickable(WebElement element) {
-		wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
 

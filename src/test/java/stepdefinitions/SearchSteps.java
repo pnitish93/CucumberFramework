@@ -114,7 +114,7 @@ public class SearchSteps{
 			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[text()='Apps for Android']"));
 		}
 		else if (categoryType.equalsIgnoreCase("Audible Audiobooks")) {
-			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[contains(text(), 'Most Popular Audiobooks')]"));
+			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//img[@alt = 'Audible Audiobooks']"));
 		}
 		else {
 			Assert.assertTrue(utils.checkIfAtLeastOneElementAvailable("xpath", "//span[contains(text(), '"+categoryType+"')]"));
